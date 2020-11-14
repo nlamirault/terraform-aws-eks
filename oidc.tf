@@ -23,9 +23,10 @@ resource "aws_iam_openid_connect_provider" "eks" {
 }
 
 resource "aws_secretsmanager_secret" "oidc_url" {
-  name        = format("%s_oidc_url", replace(var.cluster_name, "-", "_"))
-  description = "OpenID Connect Provider URL"
-  tags        = var.tags
+  name                    = format("%s_oidc_url", replace(var.cluster_name, "-", "_"))
+  description             = "OpenID Connect Provider URL"
+  recovery_window_in_days = var.recovery_window_in_days
+  tags                    = var.tags
 }
 
 resource "aws_secretsmanager_secret_version" "oidc_url" {
@@ -34,9 +35,10 @@ resource "aws_secretsmanager_secret_version" "oidc_url" {
 }
 
 resource "aws_secretsmanager_secret" "oidc_arn" {
-  name        = format("%s_oidc_arn", replace(var.cluster_name, "-", "_"))
-  description = "OpenID Connect Provider ARN"
-  tags        = var.tags
+  name                    = format("%s_oidc_arn", replace(var.cluster_name, "-", "_"))
+  description             = "OpenID Connect Provider ARN"
+  recovery_window_in_days = var.recovery_window_in_days
+  tags                    = var.tags
 }
 
 resource "aws_secretsmanager_secret_version" "oidc_arn" {
