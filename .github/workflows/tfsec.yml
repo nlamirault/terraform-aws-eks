@@ -23,35 +23,13 @@ on:
     branches: [ master ]
 
 jobs:
-  tfsec_aws:
+  tfsec:
     name: aws
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Terraform security scan master
-        uses: triat/terraform-security-scan@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  tfsec_azure:
-    name: azure
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Terraform security scan one correct
-        uses: triat/terraform-security-scan@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  tfsec_gcloud:
-    name: gcp
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Terraform security scan no dir
         uses: triat/terraform-security-scan@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
