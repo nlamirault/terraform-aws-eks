@@ -108,8 +108,26 @@ variable "node_pools" {
 #############################################################################
 # Secret Manager
 
-variable recovery_window_in_days {
+variable "recovery_window_in_days" {
   type        = number
   description = "Specifies the number of days that AWS Secrets Manager waits before it can delete the secret. This value can be 0 to force deletion without recovery or range from 7 to 30 days."
   default     = 30
+}
+
+#############################################################################
+# EBS CSI Driver
+
+variable "namespace" {
+  type        = string
+  description = "The Kubernetes namespace for ebs-csi driver"
+  default     = "kube-system"
+}
+
+variable "service_accounts" {
+  type        = list(string)
+  description = "The Kubernetes service account for ebs-csi driver"
+  default = [
+    "ebs-csi-controller-sa",
+    "ebs-snapshot-controller"
+  ]
 }

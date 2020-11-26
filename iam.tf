@@ -13,7 +13,7 @@
 # limitations under the License.
 
 resource "aws_iam_role" "cluster" {
-  name = format("%s-cluster-role", var.cluster_name)
+  name = local.cluster_role
 
   assume_role_policy = <<POLICY
 {
@@ -42,7 +42,7 @@ resource "aws_iam_role_policy_attachment" "cluster-AmazonEKSServicePolicy" {
 }
 
 resource "aws_iam_role" "node" {
-  name = format("%s-node-role", var.cluster_name)
+  name = local.node_role
 
   assume_role_policy = <<POLICY
 {
@@ -76,6 +76,6 @@ resource "aws_iam_role_policy_attachment" "node-AmazonEC2ContainerRegistryReadOn
 }
 
 resource "aws_iam_instance_profile" "node" {
-  name = format("%s-eks-node-instance-profile", var.cluster_name)
+  name = local.instance_profile
   role = aws_iam_role.node.name
 }
