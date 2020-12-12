@@ -17,7 +17,7 @@ module "sg_cluster" {
   version = "3.0.1"
 
   name        = format("%s-cluster-sg", var.cluster_name)
-  description = "EKS node security groups"
+  description = "EKS Cluster security groups"
   vpc_id      = data.aws_vpc.eks.id
 
   ingress_cidr_blocks = ["0.0.0.0/0"]
@@ -47,7 +47,7 @@ module "sg_node" {
   version = "3.0.1"
 
   name        = format("%s-node-sg", var.cluster_name)
-  description = "EKS node security groups"
+  description = "EKS control plane security groups"
   vpc_id      = data.aws_vpc.eks.id
 
   ingress_cidr_blocks = [data.aws_vpc.eks.cidr_block]
