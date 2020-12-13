@@ -112,6 +112,8 @@ variable "node_pools" {
     node_instance_type = string
     max_size           = number
     min_size           = number
+    capacity_type      = string
+    disk_size          = number
   }))
   default = {}
 }
