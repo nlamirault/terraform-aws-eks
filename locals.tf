@@ -14,4 +14,9 @@
 
 locals {
   default_node_group_name = "core"
+
+  cluster_role     = format("%s-cluster-role", var.cluster_name)
+  node_role        = format("%s-node-role", var.cluster_name)
+  instance_profile = format("%s-eks-node-instance-profile", var.cluster_name)
+  ebs_csi          = "ebs-csi-controller"
 }
