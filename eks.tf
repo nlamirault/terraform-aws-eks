@@ -40,7 +40,7 @@ resource "aws_eks_cluster" "eks" {
 resource "aws_eks_node_group" "eks_node_group" {
 
   cluster_name    = var.cluster_name
-  node_group_name = format("%s-%s-node-group", var.cluster_name, local.default_node_group_name)
+  node_group_name = format("%s-%s", var.cluster_name, local.default_node_group_name)
 
   node_role_arn = aws_iam_role.node.arn
   subnet_ids    = data.aws_subnet_ids.private.ids
@@ -66,7 +66,7 @@ resource "aws_eks_node_group" "eks_node_group" {
   ]
 
   tags = merge({
-    Name = format("%s-%s-node-group", var.cluster_name, local.default_node_group_name)
+    Name = format("%s-%s", var.cluster_name, local.default_node_group_name)
   }, var.tags)
 }
 
@@ -75,7 +75,7 @@ resource "aws_eks_node_group" "addons" {
   for_each = var.node_pools
 
   cluster_name    = var.cluster_name
-  node_group_name = format("%s-%s-node-group", var.cluster_name, each.key)
+  node_group_name = format("%s-%s", var.cluster_name, each.key)
 
   node_role_arn = aws_iam_role.node.arn
   subnet_ids    = data.aws_subnet_ids.private.ids
@@ -101,7 +101,7 @@ resource "aws_eks_node_group" "addons" {
   ]
 
   tags = merge({
-    Name = format("%s-%s-node-group", var.cluster_name, each.key)
+    Name = format("%s-%s", var.cluster_name, each.key)
   }, var.tags)
 
 }
