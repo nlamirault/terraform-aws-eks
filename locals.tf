@@ -1,4 +1,4 @@
-# Copyright (C) 2020 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+# Copyright (C) 2020-2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
 locals {
   default_node_group_name = "core"
 
-  cluster_role     = format("%s-cluster-role", var.cluster_name)
-  node_role        = format("%s-node-role", var.cluster_name)
-  instance_profile = format("%s-eks-node-instance-profile", var.cluster_name)
-  ebs_csi          = "ebs-csi-controller"
+  cluster_role     = format("%s-cluster", var.cluster_name)
+  node_role        = format("%s-node", var.cluster_name)
+  instance_profile = format("%s-instance-profile", var.cluster_name)
+  ebs_csi          = format("%s-ebs-csi-controller", var.cluster_name)
 }

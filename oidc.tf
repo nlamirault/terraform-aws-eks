@@ -1,4 +1,4 @@
-# Copyright (C) 2020 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+# Copyright (C) 2020-2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,28 +20,4 @@ resource "aws_iam_openid_connect_provider" "eks" {
   client_id_list  = ["sts.amazonaws.com"]
   thumbprint_list = [data.tls_certificate.eks.certificates[0].sha1_fingerprint]
   url             = aws_eks_cluster.eks.identity[0].oidc[0].issuer
-}
-
-resource "aws_secretsmanager_secret" "oidc_url" {
-  name                    = format("%s_oidc_url", replace(var.cluster_name, "-", "_"))
-  description             = "OpenID Connect Provider URL"
-  recovery_window_in_days = var.recovery_window_in_days
-  tags                    = var.tags
-}
-
-resource "aws_secretsmanager_secret_version" "oidc_url" {
-  secret_id     = aws_secretsmanager_secret.oidc_url.id
-  secret_binary = base64encode(aws_iam_openid_connect_provider.eks.url)
-}
-
-resource "aws_secretsmanager_secret" "oidc_arn" {
-  name                    = format("%s_oidc_arn", replace(var.cluster_name, "-", "_"))
-  description             = "OpenID Connect Provider ARN"
-  recovery_window_in_days = var.recovery_window_in_days
-  tags                    = var.tags
-}
-
-resource "aws_secretsmanager_secret_version" "oidc_arn" {
-  secret_id     = aws_secretsmanager_secret.oidc_arn.id
-  secret_binary = base64encode(aws_iam_openid_connect_provider.eks.arn)
 }
