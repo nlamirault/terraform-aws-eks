@@ -41,4 +41,4 @@ repos:
       - '--args=--enable-rule=terraform_required_providers'
       - '--args=--enable-rule=terraform_unused_required_providers'
       - '--args=--enable-rule=terraform_standard_module_structure'
-    # - id: terraform_tfsec
+    - id: terraform_tfsec
