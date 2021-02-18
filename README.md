@@ -1,5 +1,8 @@
 # terraform-aws-eks
 
+![Tfsec](https://github.com/nlamirault/terraform-aws-eks/workflows/Tfsec/badge.svg)
+[![GitHub release](https://img.shields.io/github/release/nlamirault/terraform-aws-eks.svg)](https://github.com/nlamirault/terraform-aws-eks/releases/latest)
+
 Terraform module which configure a Kubernetes cluster (EKS) on Amazon AWS.
 
 ## Versions
