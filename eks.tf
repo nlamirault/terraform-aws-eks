@@ -51,8 +51,8 @@ resource "aws_eks_node_group" "eks_node_group" {
     min_size     = var.min_size
   }
 
-  capacity_type  = var.capacity_type
-  disk_size      = var.disk_size
+  capacity_type = var.capacity_type
+  disk_size     = var.disk_size
   instance_types = [
     var.node_instance_type
   ]
@@ -80,8 +80,8 @@ resource "aws_eks_node_group" "addons" {
   node_role_arn = aws_iam_role.node.arn
   subnet_ids    = data.aws_subnet_ids.private.ids
 
-  capacity_type  = each.value.capacity_type
-  disk_size      = each.value.disk_size
+  capacity_type = each.value.capacity_type
+  disk_size     = each.value.disk_size
   instance_types = [
     each.value.node_instance_type
   ]
@@ -105,4 +105,3 @@ resource "aws_eks_node_group" "addons" {
   }, var.tags)
 
 }
-

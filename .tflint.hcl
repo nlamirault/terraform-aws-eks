@@ -1,4 +1,4 @@
-# Copyright (C) 2020-2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,16 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-data "aws_vpc" "eks" {
-  id = var.vpc_id
+config {
+  module = false
+  force = false
+  disabled_by_default = false
+
+  ignore_module = {
+  }
+
 }
 
-data "aws_subnet_ids" "private" {
-  vpc_id = data.aws_vpc.eks.id
-  tags   = var.private_subnet_tags
+plugin "aws" {
+  enabled = true
 }
-
-#data "aws_subnet_ids" "public" {
-#  vpc_id = data.aws_vpc.eks.id
-#  tags   = var.public_subnet_tags
-#}
