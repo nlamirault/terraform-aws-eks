@@ -13,5 +13,6 @@
 # limitations under the License.
 
 output "role_arn" {
-  value = aws_iam_role.ebs_csi.arn
+  value       = aws_iam_role.ebs_csi.arn
+  description = "Role ARN for EKS EBS CSI driver"
 }

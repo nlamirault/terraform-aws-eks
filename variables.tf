@@ -33,13 +33,13 @@ variable "private_subnet_tags" {
   }
 }
 
-variable "public_subnet_tags" {
-  type        = map(string)
-  description = "Tags for public subnets"
-  default = {
-    "made-by" = "terraform"
-  }
-}
+#variable "public_subnet_tags" {
+#  type        = map(string)
+#  description = "Tags for public subnets"
+#  default = {
+#    "made-by" = "terraform"
+#  }
+#}
 
 #############################################################################
 # Kubernetes cluster
@@ -81,14 +81,14 @@ variable "tags" {
 }
 
 variable "capacity_type" {
-  type = string
-  description = "Type of capacity associated with the EKS Node Group. Valid values: ON_DEMAND, SPOT"  
+  type        = string
+  description = "Type of capacity associated with the EKS Node Group. Valid values: ON_DEMAND, SPOT"
 }
 
 variable "disk_size" {
-  type = number
+  type        = number
   description = " Disk size in GiB for worker nodes."
-  default = 20  
+  default     = 20
 }
 
 variable "node_instance_type" {
