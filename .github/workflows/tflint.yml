@@ -31,3 +31,17 @@ jobs:
 
       - name: Check linting of Terraform files
         uses: devops-infra/action-tflint@master
+        with:
+          tflint_params: |
+            --enable-rule=terraform_deprecated_interpolation
+            --enable-rule=terraform_deprecated_index
+            --enable-rule=terraform_unused_declarations
+            --enable-rule=terraform_comment_syntax
+            --enable-rule=terraform_documented_outputs
+            --enable-rule=terraform_documented_variables
+            --enable-rule=terraform_typed_variables
+            --enable-rule=terraform_naming_convention
+            --enable-rule=terraform_required_version
+            --enable-rule=terraform_required_providers
+            --enable-rule=terraform_unused_required_providers
+            --enable-rule=terraform_standard_module_structure
