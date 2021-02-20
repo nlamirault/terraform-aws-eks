@@ -14,7 +14,7 @@
 
 module "sg_cluster" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.17.0"
+  version = "3.18.0"
 
   name        = format("%s-cluster-sg", var.cluster_name)
   description = "EKS Cluster security groups"
@@ -44,7 +44,7 @@ module "sg_cluster" {
 
 module "sg_node" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.17.0"
+  version = "3.18.0"
 
   name        = format("%s-node-sg", var.cluster_name)
   description = "EKS control plane security groups"
