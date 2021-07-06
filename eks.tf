@@ -22,10 +22,13 @@ resource "aws_eks_cluster" "eks" {
   vpc_config {
     endpoint_private_access = true
     endpoint_public_access  = true
+    public_access_cidrs     = var.public_access_cidrs
+
     security_group_ids = [
       module.sg_cluster.this_security_group_id,
       module.sg_node.this_security_group_id,
     ]
+    
     subnet_ids = data.aws_subnet_ids.private.ids
   }
 

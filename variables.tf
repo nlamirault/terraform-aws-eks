@@ -102,6 +102,11 @@ variable "eks_logging" {
   default     = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 }
 
+variable "public_access_cidrs" {
+  type = list(string)
+  description = "which CIDR blocks can access the Amazon EKS public API server endpoint"
+}
+
 variable "enable_kms" {
   type        = bool
   description = "Enable encryption configuration for the cluster"
