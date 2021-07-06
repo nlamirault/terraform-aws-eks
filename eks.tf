@@ -29,6 +29,16 @@ resource "aws_eks_cluster" "eks" {
     subnet_ids = data.aws_subnet_ids.private.ids
   }
 
+  dynamic "encryption_config" {
+    for_each = var.enable_kms ? [1] : []
+    content {
+      resources = [ "secrets" ]
+      provider {
+          key_arn = var.kms_arn
+      }
+    }
+  }
+
   enabled_cluster_log_types = var.eks_logging
 
   depends_on = [

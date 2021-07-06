@@ -102,6 +102,16 @@ variable "eks_logging" {
   default     = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 }
 
+variable "enable_kms" {
+  type        = bool
+  description = "Enable encryption configuration for the cluster"
+}
+
+variable "kms_arn" {
+  type        = string
+  description = "ARN of the Key Management Service (KMS) customer master key (CMK)."
+}
+
 #############################################################################
 # Addons node pool
 
