@@ -103,7 +103,7 @@ variable "eks_logging" {
 }
 
 variable "public_access_cidrs" {
-  type = list(string)
+  type        = list(string)
   description = "which CIDR blocks can access the Amazon EKS public API server endpoint"
 }
 

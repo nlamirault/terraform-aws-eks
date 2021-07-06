@@ -90,23 +90,23 @@ This module creates :
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.14.0 |
+| terraform | >= 1.0.0 |
 | aws | >= 3.26.0 |
-| tls | 3.0.0 |
+| tls | 3.1.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | aws | >= 3.26.0 |
-| tls | 3.0.0 |
+| tls | 3.1.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| sg_cluster | terraform-aws-modules/security-group/aws | 3.17.0 |
-| sg_node | terraform-aws-modules/security-group/aws | 3.17.0 |
+| sg_cluster | terraform-aws-modules/security-group/aws | 4.3.0 |
+| sg_node | terraform-aws-modules/security-group/aws | 4.3.0 |
 
 ## Resources
 
@@ -124,7 +124,7 @@ This module creates :
 | [aws_secretsmanager_secret_version](https://registry.terraform.io/providers/hashicorp/aws/3.26.0/docs/resources/secretsmanager_secret_version) |
 | [aws_subnet_ids](https://registry.terraform.io/providers/hashicorp/aws/3.26.0/docs/data-sources/subnet_ids) |
 | [aws_vpc](https://registry.terraform.io/providers/hashicorp/aws/3.26.0/docs/data-sources/vpc) |
-| [tls_certificate](https://registry.terraform.io/providers/hashicorp/tls/3.0.0/docs/data-sources/certificate) |
+| [tls_certificate](https://registry.terraform.io/providers/hashicorp/tls/3.1.0/docs/data-sources/certificate) |
 
 ## Inputs
 
@@ -135,6 +135,8 @@ This module creates :
 | desired\_size | Autoscaling Desired node capacity | `string` | `2` | no |
 | disk\_size | Disk size in GiB for worker nodes. | `number` | `20` | no |
 | eks\_logging | A list of the desired control plane logging to enable | `list(string)` | <pre>[<br>  "api",<br>  "audit",<br>  "authenticator",<br>  "controllerManager",<br>  "scheduler"<br>]</pre> | no |
+| enable\_kms | Enable encryption configuration for the cluster | `bool` | n/a | yes |
+| kms\_arn | ARN of the Key Management Service (KMS) customer master key (CMK). | `string` | n/a | yes |
 | kubernetes\_version | The EKS Kubernetes version | `string` | n/a | yes |
 | max\_size | Autoscaling maximum node capacity | `string` | `5` | no |
 | min\_size | Autoscaling Minimum node capacity | `string` | `1` | no |
@@ -142,6 +144,7 @@ This module creates :
 | node\_instance\_type | Worker Node EC2 instance type | `string` | n/a | yes |
 | node\_pools | Addons node pools | <pre>map(object({<br>    desired_size       = number<br>    node_instance_type = string<br>    max_size           = number<br>    min_size           = number<br>    capacity_type      = string<br>    disk_size          = number<br>  }))</pre> | `{}` | no |
 | private\_subnet\_tags | Tags for private subnets | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |
+| public\_access\_cidrs | which CIDR blocks can access the Amazon EKS public API server endpoint | `list(string)` | n/a | yes |
 | recovery\_window\_in\_days | Specifies the number of days that AWS Secrets Manager waits before it can delete the secret. This value can be 0 to force deletion without recovery or range from 7 to 30 days. | `number` | `30` | no |
 | service\_accounts | The Kubernetes service account for ebs-csi driver | `list(string)` | <pre>[<br>  "ebs-csi-controller-sa",<br>  "ebs-snapshot-controller"<br>]</pre> | no |
 | tags | Tags associated to the resources | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |
